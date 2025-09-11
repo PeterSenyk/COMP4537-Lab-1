@@ -1,4 +1,56 @@
+<!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${MESSAGES.WRITER_TITLE}</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
 <body>
-    
+    <nav class="navigation">
+        <h1>${MESSAGES.WRITER_TITLE}</h1>
+        <div class="button-container">
+            <a href="index.html" class="nav-button home-button">${MESSAGES.HOME_BUTTON}</a>
+            <a href="reader.html" class="nav-button reader-button">${MESSAGES.READER_BUTTON}</a>
+        </div>
+    </nav>
+
+    <div class="writer-container">
+        <div class="messages-container">
+            <h2>${MESSAGES.MESSAGES}</h2>
+            <div id="messages-list">
+                <p class="no-messages">${MESSAGES.NO_MESSAGES}</p>
+            </div>
+            <button id="add-note-btn" class="add-note-btn">${MESSAGES.ADD_NOTE}</button>
+        </div>
+    </div>
+
+    <!-- Add Note Modal -->
+    <div id="add-note-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>${MESSAGES.ADD_NOTE}</h3>
+                <span class="close">&times;</span>
+            </div>
+            <form id="add-note-form">
+                <div class="form-group">
+                    <label for="note-title">${MESSAGES.NOTE_TITLE}:</label>
+                    <input type="text" id="note-title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="note-content">${MESSAGES.NOTE_CONTENT}:</label>
+                    <textarea id="note-content" name="content" rows="5" required></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="save-btn">${MESSAGES.SAVE_NOTE}</button>
+                    <button type="button" class="cancel-btn">${MESSAGES.CANCEL}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../lang/messages/en/user.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/writer.js"></script>
 </body>
+</html>

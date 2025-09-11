@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${MESSAGES.READER_TITLE}</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="navigation">
+        <h1>${MESSAGES.READER_TITLE}</h1>
+        <div class="button-container">
+            <a href="index.html" class="nav-button home-button">${MESSAGES.HOME_BUTTON}</a>
+            <a href="writer.html" class="nav-button writer-button">${MESSAGES.WRITER_BUTTON}</a>
+        </div>
+    </nav>
+
+    <div class="reader-container">
+        <div class="notes-container">
+            <h2>${MESSAGES.ALL_NOTES}</h2>
+            <div id="notes-list">
+                <p class="no-notes">${MESSAGES.NO_NOTES}</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../lang/messages/en/user.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/reader.js"></script>
+</body>
+</html>

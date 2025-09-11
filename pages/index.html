@@ -4,13 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${MESSAGES.PAGE_TITLE}</title>
-    <h3>${MESSAGES.STUDENT_NAME}</h3>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-
-    <div id="note-area"></div>
+    <nav class="navigation">
+        <h1>${MESSAGES.PAGE_TITLE}</h1>
+        <h3>${MESSAGES.STUDENT_NAME}</h3>
+        <div class="button-container">
+            <a href="writer.html" class="nav-button writer-button">${MESSAGES.WRITER_BUTTON}</a>
+            <a href="reader.html" class="nav-button reader-button">${MESSAGES.READER_BUTTON}</a>
+        </div>
+    </nav>
     
-    <script src="./js/script.js"></script>
+    <script src="../lang/messages/en/user.js"></script>
+    <script src="../js/script.js"></script>
 </body>
 </html>
