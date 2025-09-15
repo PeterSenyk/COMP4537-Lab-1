@@ -36,6 +36,9 @@ const MESSAGES = {
     NOT_SAVED_YET: 'Not saved yet',
     LAST_RETRIEVED: 'Last retrieved:',
 
+    // Validation messages
+    FILL_BOTH_FIELDS: 'Please fill in both title and content.',
+
 };
 
 window.MESSAGES = MESSAGES;

@@ -32,7 +32,6 @@ class MessageWriter {
         cancelBtn.addEventListener('click', () => this.closeModal());
         form.addEventListener('submit', (e) => this.handleSubmit(e));
         
-        // Close modal when clicking outside
         window.addEventListener('click', (e) => {
             if (e.target === modal) {
                 this.closeModal();
@@ -65,13 +64,12 @@ class MessageWriter {
         this.updateLastSavedDisplay();
     }
 
+    //AI helped with auto save for both reader and writer
     startAutoSave() {
-        // Clear any existing interval
         if (this.autoSaveInterval) {
             clearInterval(this.autoSaveInterval);
         }
         
-        // Auto-save every 2 seconds
         this.autoSaveInterval = setInterval(() => {
             this.saveMessages();
         }, 2000);
@@ -125,12 +123,11 @@ class MessageWriter {
         const content = document.getElementById('note-content').value.trim();
         
         if (!title || !content) {
-            alert('Please fill in both title and content.');
+            alert(MESSAGES.FILL_BOTH_FIELDS);
             return;
         }
 
         if (this.editingId) {
-            // Update existing message
             const message = this.messages.find(m => m.id === this.editingId);
             if (message) {
                 message.title = title;
@@ -139,7 +136,6 @@ class MessageWriter {
             }
             this.showMessage(MESSAGES.NOTE_UPDATED);
         } else {
-            // Add new message
             const message = {
                 id: Date.now().toString(),
                 title: title,
@@ -172,7 +168,6 @@ class MessageWriter {
             return;
         }
 
-        // Sort messages by creation date (newest first)
         const sortedMessages = [...this.messages].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
         messagesList.innerHTML = sortedMessages.map(message => `
@@ -232,13 +227,11 @@ document.addEventListener('DOMContentLoaded', () => {
     messageWriter = new MessageWriter();
 });
 
-// Clean up interval when page is unloaded
 window.addEventListener('beforeunload', () => {
     if (messageWriter) {
         messageWriter.stopAutoSave();
     }
 });
-
 
 const style = document.createElement('style');
 style.textContent = `
