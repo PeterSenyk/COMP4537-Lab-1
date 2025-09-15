@@ -2,6 +2,7 @@
 /* Styles provided by AI-ChatGPT */
 
 .navigation {
+    position: relative;
     text-align: center;
     padding: 20px;
     background-color: #f8f9fa;
@@ -12,6 +13,32 @@
     margin: 0 0 20px 0;
     color: #333;
     font-size: 2.5em;
+}
+
+.last-saved-timestamp {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #28a745;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.last-retrieved-timestamp {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #17a2b8;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .button-container {

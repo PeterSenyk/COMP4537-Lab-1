@@ -3,6 +3,8 @@ class NoteReader {
         this.msg_notSupported = MESSAGES.BROWSER_NOT_SUPPORTED;
         this.msg_key = MESSAGES.STORAGE_KEY;
         this.notes = [];
+        this.autoRefreshInterval = null;
+        this.lastRetrievedTime = null;
         
         this.init();
     }
@@ -11,6 +13,8 @@ class NoteReader {
         this.checkStorage();
         this.loadNotes();
         this.renderNotes();
+        this.startAutoRefresh();
+        this.updateLastRetrievedDisplay();
     }
 
     checkStorage() {
@@ -25,9 +29,42 @@ class NoteReader {
         if (stored) {
             try {
                 this.notes = JSON.parse(stored);
+                this.lastRetrievedTime = new Date();
+                this.updateLastRetrievedDisplay();
             } catch (e) {
                 console.error('Error parsing notes from localStorage:', e);
                 this.notes = [];
+            }
+        }
+    }
+
+    startAutoRefresh() {
+        // Clear any existing interval
+        if (this.autoRefreshInterval) {
+            clearInterval(this.autoRefreshInterval);
+        }
+        
+        // Auto-refresh every 2 seconds
+        this.autoRefreshInterval = setInterval(() => {
+            this.loadNotes();
+            this.renderNotes();
+        }, 2000);
+    }
+
+    stopAutoRefresh() {
+        if (this.autoRefreshInterval) {
+            clearInterval(this.autoRefreshInterval);
+            this.autoRefreshInterval = null;
+        }
+    }
+
+    updateLastRetrievedDisplay() {
+        const timestampElement = document.getElementById('last-retrieved-time');
+        if (timestampElement) {
+            if (this.lastRetrievedTime) {
+                timestampElement.textContent = `${MESSAGES.LAST_RETRIEVED} ${this.lastRetrievedTime.toLocaleTimeString()}`;
+            } else {
+                timestampElement.textContent = MESSAGES.NOT_SAVED_YET;
             }
         }
     }
@@ -74,4 +111,11 @@ class NoteReader {
 let noteReader;
 document.addEventListener('DOMContentLoaded', () => {
     noteReader = new NoteReader();
+});
+
+// Clean up interval when page is unloaded
+window.addEventListener('beforeunload', () => {
+    if (noteReader) {
+        noteReader.stopAutoRefresh();
+    }
 });

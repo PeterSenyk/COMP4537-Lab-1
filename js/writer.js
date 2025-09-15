@@ -5,6 +5,8 @@ class MessageWriter {
         this.msg_key = MESSAGES.STORAGE_KEY;
         this.messages = [];
         this.editingId = null;
+        this.autoSaveInterval = null;
+        this.lastSavedTime = null;
         
         this.init();
     }
@@ -14,6 +16,8 @@ class MessageWriter {
         this.loadMessages();
         this.setupEventListeners();
         this.renderMessages();
+        this.startAutoSave();
+        this.updateLastSavedDisplay();
     }
 
     setupEventListeners() {
@@ -57,6 +61,38 @@ class MessageWriter {
 
     saveMessages() {
         localStorage.setItem(this.msg_key, JSON.stringify(this.messages));
+        this.lastSavedTime = new Date();
+        this.updateLastSavedDisplay();
+    }
+
+    startAutoSave() {
+        // Clear any existing interval
+        if (this.autoSaveInterval) {
+            clearInterval(this.autoSaveInterval);
+        }
+        
+        // Auto-save every 2 seconds
+        this.autoSaveInterval = setInterval(() => {
+            this.saveMessages();
+        }, 2000);
+    }
+
+    stopAutoSave() {
+        if (this.autoSaveInterval) {
+            clearInterval(this.autoSaveInterval);
+            this.autoSaveInterval = null;
+        }
+    }
+
+    updateLastSavedDisplay() {
+        const timestampElement = document.getElementById('last-saved-time');
+        if (timestampElement) {
+            if (this.lastSavedTime) {
+                timestampElement.textContent = `${MESSAGES.LAST_SAVED} ${this.lastSavedTime.toLocaleTimeString()}`;
+            } else {
+                timestampElement.textContent = MESSAGES.NOT_SAVED_YET;
+            }
+        }
     }
 
     openModal() {
@@ -194,6 +230,13 @@ class MessageWriter {
 let messageWriter;
 document.addEventListener('DOMContentLoaded', () => {
     messageWriter = new MessageWriter();
+});
+
+// Clean up interval when page is unloaded
+window.addEventListener('beforeunload', () => {
+    if (messageWriter) {
+        messageWriter.stopAutoSave();
+    }
 });
 
 

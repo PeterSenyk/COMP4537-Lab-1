@@ -31,6 +31,11 @@ const MESSAGES = {
     READER_TITLE: 'Note Reader',
     ALL_NOTES: 'All Notes',
 
+    // Timestamp messages
+    LAST_SAVED: 'Last saved:',
+    NOT_SAVED_YET: 'Not saved yet',
+    LAST_RETRIEVED: 'Last retrieved:',
+
 };
 
 window.MESSAGES = MESSAGES;
