@@ -27,16 +27,13 @@ const MESSAGES = {
     CONFIRM_DELETE: 'Are you sure you want to delete this note?',
     MESSAGE_REMOVED: 'Message removed successfully!',
 
-    // Reader page messages
     READER_TITLE: 'Note Reader',
     ALL_NOTES: 'All Notes',
 
-    // Timestamp messages
     LAST_SAVED: 'Last saved:',
     NOT_SAVED_YET: 'Not saved yet',
     LAST_RETRIEVED: 'Last retrieved:',
 
-    // Validation messages
     FILL_BOTH_FIELDS: 'Please fill in both title and content.',
 
 };

@@ -39,12 +39,10 @@ class NoteReader {
     }
 
     startAutoRefresh() {
-        // Clear any existing interval
         if (this.autoRefreshInterval) {
             clearInterval(this.autoRefreshInterval);
         }
         
-        // Auto-refresh every 2 seconds
         this.autoRefreshInterval = setInterval(() => {
             this.loadNotes();
             this.renderNotes();
@@ -77,7 +75,6 @@ class NoteReader {
             return;
         }
 
-        // Sort notes by creation date (newest first)
         const sortedNotes = [...this.notes].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
         notesList.innerHTML = sortedNotes.map(note => `
@@ -107,13 +104,11 @@ class NoteReader {
     }
 }
 
-// Initialize the note reader when the page loads
 let noteReader;
 document.addEventListener('DOMContentLoaded', () => {
     noteReader = new NoteReader();
 });
 
-// Clean up interval when page is unloaded
 window.addEventListener('beforeunload', () => {
     if (noteReader) {
         noteReader.stopAutoRefresh();

@@ -1,4 +1,3 @@
-// Process message placeholders
 document.addEventListener('DOMContentLoaded', function() {
     const elements = document.querySelectorAll('*');
     elements.forEach(element => {
