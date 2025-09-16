@@ -227,23 +227,11 @@ document.addEventListener('DOMContentLoaded', () => {
     messageWriter = new MessageWriter();
 });
 
+//AI helped with auto save for both reader and writer
 window.addEventListener('beforeunload', () => {
     if (messageWriter) {
         messageWriter.stopAutoSave();
     }
 });
 
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideIn {
-        from {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
-    }
-`;
 document.head.appendChild(style);
