@@ -38,6 +38,7 @@ class NoteReader {
         }
     }
 
+    //AI helped with auto refresh for both reader and writer
     startAutoRefresh() {
         if (this.autoRefreshInterval) {
             clearInterval(this.autoRefreshInterval);
